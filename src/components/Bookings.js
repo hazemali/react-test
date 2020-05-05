@@ -6,18 +6,27 @@ import Button from '@material-ui/core/Button';
 class Bookings extends Component {
 
 
+    handleGuestInfo = (e) =>{
+        return this.props.hackersHaveBeenChanged(e);
+    };
+
+    handleDateInfo = (e) => {
+        return this.props.datesHaveBeenChanged(e);
+
+    };
+
     render() {
         return (
       <div className="row">
         <TextField
-            onChange={this.props.hackersHaveBeenChanged}
+            onChange={this.handleGuestInfo}
           className="col-md-6"
           multiline
           rows="4"
           placeholder="Enter the hacker list (one hacker per line)"
         />
         <TextField
-            onChange={this.props.datesHaveBeenChanged}
+            onChange={this.handleDateInfo}
 
             className="col-md-6"
           multiline

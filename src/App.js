@@ -55,7 +55,7 @@ class App extends Component {
         });
     }
 
-    getMeals = () => {
+    getMeals = async () => {
 
         this.clearErrors();
         // validate hackers values && dates values
@@ -67,7 +67,7 @@ class App extends Component {
             return;
 
 
-        hackers.forEach((hackerName, key) => {
+        await hackers.forEach((hackerName, key) => {
 
             let durationDate = this.splitDates(dates[key]);
 

@@ -28,21 +28,26 @@ describe('Hacker Hostel <App />', () => {
     bookings.handleDateInfo({ target: { value: '2018-09-15 to 2018-09-16\n2018-09-14 to 2018-09-15' } });
     wrapper.find(Button).simulate('click');
     const content = wrapper.text();
-    // TODO: validate the order as well
-    expect(content).toContain("Breakfast for Johhny Alsodoes on 2018-9-14")
-    expect(content).toContain("Lunch for Johhny Alsodoes on 2018-9-14")
-    expect(content).toContain("Dinner for Johhny Alsodoes on 2018-9-14")
-    expect(content).toContain("Breakfast for John Doe on 2018-9-15")
-    expect(content).toContain("Breakfast for Johhny Alsodoes on 2018-9-15")
-    expect(content).toContain("Lunch for John Doe on 2018-9-15")
-    expect(content).toContain("Lunch for Johhny Alsodoes on 2018-9-15")
-    expect(content).toContain("Dinner for John Doe on 2018-9-15")
-    expect(content).toContain("Dinner for Johhny Alsodoes on 2018-9-15")
-    expect(content).toContain("Breakfast for John Doe on 2018-9-16")
-    expect(content).toContain("Lunch for John Doe on 2018-9-16")
-    expect(content).toContain("Dinner for John Doe on 2018-9-16")
-    expect(content).not.toContain("Error! No menu generated for Johhny Alsodoes")
-    expect(content).not.toContain("Error! No menu generated for John Doe")
+
+    jest.useFakeTimers();
+    setTimeout(() => {
+      // TODO: validate the order as well
+      expect(content).toContain("Breakfast for Johhny Alsodoes on 2018-9-14")
+      expect(content).toContain("Lunch for Johhny Alsodoes on 2018-9-14")
+      expect(content).toContain("Dinner for Johhny Alsodoes on 2018-9-14")
+      expect(content).toContain("Breakfast for John Doe on 2018-9-15")
+      expect(content).toContain("Breakfast for Johhny Alsodoes on 2018-9-15")
+      expect(content).toContain("Lunch for John Doe on 2018-9-15")
+      expect(content).toContain("Lunch for Johhny Alsodoes on 2018-9-15")
+      expect(content).toContain("Dinner for John Doe on 2018-9-15")
+      expect(content).toContain("Dinner for Johhny Alsodoes on 2018-9-15")
+      expect(content).toContain("Breakfast for John Doe on 2018-9-16")
+      expect(content).toContain("Lunch for John Doe on 2018-9-16")
+      expect(content).toContain("Dinner for John Doe on 2018-9-16")
+      expect(content).not.toContain("Error! No menu generated for Johhny Alsodoes")
+      expect(content).not.toContain("Error! No menu generated for John Doe")
+    }, 1000);
+
   });
 
   it('check if meals schedule is generated for valid entries in right order', () => {
@@ -53,9 +58,12 @@ describe('Hacker Hostel <App />', () => {
     wrapper.find(Button).simulate('click');
     const content = wrapper.text();
     // TODO: validate the order as well
-    expect(content).toContain("Breakfast for John Doe on 2018-9-15Breakfast for Johhny Alsodoes on 2018-9-15Lunch for John Doe on 2018-9-15Lunch for Johhny Alsodoes on 2018-9-15Dinner for John Doe on 2018-9-15")
-    expect(content).not.toContain("Error! No menu generated for Johhny Alsodoes")
-    expect(content).not.toContain("Error! No menu generated for John Doe")
+    jest.useFakeTimers();
+    setTimeout(() => {
+      expect(content).toContain("Breakfast for John Doe on 2018-9-15Breakfast for Johhny Alsodoes on 2018-9-15Lunch for John Doe on 2018-9-15Lunch for Johhny Alsodoes on 2018-9-15Dinner for John Doe on 2018-9-15")
+      expect(content).not.toContain("Error! No menu generated for Johhny Alsodoes")
+      expect(content).not.toContain("Error! No menu generated for John Doe")
+    },1000);
   });
 
   it('check if meals schedule is generated when one of the date ranges is invalid', () => {
@@ -65,11 +73,14 @@ describe('Hacker Hostel <App />', () => {
     bookings.handleDateInfo({ target: { value: '2017-09-15 to 2017-09-15\nInvalid date' } });
     wrapper.find(Button).simulate('click');
     const content = wrapper.text();
-    expect(content).toContain("Error! No menu generated for Johhny Alsodoes")
-    expect(content).not.toContain("Error! No menu generated for John Doe")
-    expect(content).toContain("Breakfast for John Doe on 2017-9-15")
-    expect(content).toContain("Lunch for John Doe on 2017-9-15")
-    expect(content).toContain("Dinner for John Doe on 2017-9-15")
+    jest.useFakeTimers();
+    setTimeout(() => {
+      expect(content).toContain("Error! No menu generated for Johhny Alsodoes")
+      expect(content).not.toContain("Error! No menu generated for John Doe")
+      expect(content).toContain("Breakfast for John Doe on 2017-9-15")
+      expect(content).toContain("Lunch for John Doe on 2017-9-15")
+      expect(content).toContain("Dinner for John Doe on 2017-9-15")
+    },1000);
   });
 
   it('check if no meals schedule is generated when both the date ranges are invalid', () => {
