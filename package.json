@@ -8,7 +8,7 @@
     "create-react-app": "^1.4.3",
     "eslint": "^5.4.0",
     "event-stream": "3.3.4",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.23",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
